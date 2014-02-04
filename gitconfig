@@ -1,0 +1,72 @@
+[user]
+  name = Jeduan Cornejo
+  email = jeduan@gmail.com
+[color]
+  ui = auto
+[alias]
+  tst = status --short --branch
+  st = status --short --branch
+  ci = commit -v
+  co = checkout
+  branch = branch -v
+  br = branch -v
+  diffstaged = diff --staged
+  unstage = reset HEAD --
+
+; http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+  r = reset
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh2 = reset HEAD^^ --hard
+  dc = diff --cached
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  lg = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --graph
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  le = log --oneline --decorate
+  filelog = log -u
+  fl = log -u
+  dl = "!git ll -1"
+  dlc = diff --cached HEAD^
+  dr  = "!f() { git diff "$1"^.."$1"; }; f"
+  lc  = "!f() { git ll "$1"^.."$1"; }; f"
+  diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+  f = "!git ls-files | grep -i"
+  grep = grep -Ii
+  gr = grep -Ii
+  la = "!git config -l | grep alias | cut -c 7-"
+  assume = update-index --assume-unchanged
+  unassume = update-index --no-assume-unchanged
+  assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+  unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+  assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+;http://davidwalsh.name/delete-merged-branches-git
+  delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
+;http://blog.blindgaenger.net/advanced_git_aliases.html
+  this = !git init && git add . && git commit -m \"initial commit\"
+  amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  r  = !git ls-files -z --deleted | xargs -0 git rm
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort
+  ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
+  x  = commit -m
+  xa = commit -a -m
+  a = add
+
+[core]
+  excludesfile = /Users/jeduan/.gitignore_global
+  whitespace = trailing-space,space-before-tab
+  pager = less -r
+[push]
+  default = simple
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[credential]
+  helper = osxkeychain
