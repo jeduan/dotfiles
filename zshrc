@@ -41,6 +41,7 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local
 export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
 export EDITOR='vim'
 export CDPATH=".:~:~/Code"
+export LANG=en_US.UTF-8
 alias mocha="NODE_ENV=test mocha"
 
 alias tma="tmux -CC attach -t"
@@ -58,4 +59,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 
 # export DYLD_LIBRARY_PATH="/usr/local/lib/mysql:$DYLD_LIBRARY_PATH"
 
-eval "$(rbenv init -)"
+if which rbenv &>/dev/null ; then
+  eval "$(rbenv init - --no-rehash)"
+fi

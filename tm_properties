@@ -1,0 +1,48 @@
+# General settings.
+showInvisibles      = true
+spellChecking       = true
+
+# Includes
+mExtraIncludes = ".gitignore,.gitkeep"
+fileBrowserGlob  = "{*,$mExtraIncludes}"
+include = "{$include,$mExtraIncludes}"
+
+# Excludes
+mExtraExcludes = "node_modules"
+excludeInFileChooser  = "{$excludeInFileChooser,$mExtraExcludes}"
+excludeInFolderSearch = "{$excludeInFolderSearch,$mExtraExcludes}"
+excludeDirectories = "$mExtraExcludes"
+
+[ text ]
+softWrap            = true
+wrapColumn          = 100
+softTabs            = true
+tabSize             = 2
+
+[ text.html.markdown ]
+softWrap            = true
+wrapColumn          = "Use Window Frame"
+softTabs            = false
+tabSize             = 4
+
+[ text.plain ]
+softWrap            = true
+wrapColumn          = "Use Window Frame"
+softTabs            = false
+tabSize             = 4
+
+[ source ]
+softWrap            = false
+softTabs            = true
+tabSize             = 2
+
+[ source.plist ]
+softTabs            = false
+tabSize             = 4
+
+[ source.py ]
+softTabs            = false
+tabSize             = 4
+
+[ source.tm-properties ]
+spellChecking       = false
