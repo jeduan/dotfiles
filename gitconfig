@@ -1,6 +1,6 @@
 [user]
-  name = Jeduan Cornejo
-  email = jeduan@gmail.com
+	name = Jeduan Cornejo
+	email = jeduan@gmail.com
 [color]
   ui = auto
 [alias]
@@ -63,10 +63,10 @@
 [push]
   default = simple
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path = 
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [credential]
   helper = osxkeychain

@@ -9,7 +9,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 "Syntax and language improvements
-Bundle 'digitaltoad/vim-jade'
 Bundle 'elzr/vim-json'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'moll/vim-node'
@@ -17,11 +16,10 @@ Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-markdown'
+Bundle 'xolox/vim-lua-ftplugin'
 
 "colorschemes
 Bundle 'chriskempson/base16-vim'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'MaxSt/FlatColor'
 
 Bundle 'marijnh/tern_for_vim'
 Bundle 'AndrewRadev/switch.vim'
@@ -32,7 +30,7 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'Raimondi/delimitMate'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'Shougo/neocomplete.vim'
 Bundle 'majutsush/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
@@ -69,7 +67,7 @@ if exists('+colorcolumn')
   set colorcolumn=80 " Color the 80th column differently as a wrapping guide.
 endif
 
-" set clipboard+=unnamed " Yanks go on clipboard instead.
+set clipboard+=unnamed " Yanks go on clipboard instead.
 set cf                 " Enable error files & error jumping.
 set autowrite          " Writes on make/shell commands
 "Reload files when they change on disk
@@ -166,14 +164,12 @@ au BufRead,BufNewFile {build.settings} set ft=lua
 
 " filetypes:lua
 au FileType lua setl sw=2 ts=2 noet
-let g:lua_check_syntax = 0
-let g:lua_complete_omni = 1
 
 " autocomplete
-au FileType html set omnifunc=htmlcomplete#CompleteTags
+au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
+au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 au FileType coffee nnoremap <leader>pc :! pcoffee %<space>
-
 
 " Quickly edit/reload the vimrc file
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
@@ -253,16 +249,36 @@ let g:airline_mode_map = {
 " Ack
 nnoremap <leader>ag :Ag! "<cword>"<cr>
 
-"YouCompleteMe
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_confirm_extra_conf=0
-set completeopt-=preview
-" let g:ycm_complete_in_comments = 1
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" let g:ycm_filetype_specific_completion_to_disable = {
-"     \ 'ruby' : 1,
-"     \ 'coffeescript' : 1,
-"     \}
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#smart_close_popup() . "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+let g:lua_check_syntax = 0
+let g:lua_complete_omni = 1
+let g:lua_complete_dynamic = 0
+
+let g:neocomplete#sources#omni#functions.lua =
+      \ 'xolox#lua#omnifunc'
+let g:neocomplete#sources#omni#input_patterns.lua =
+      \ '\w\+[.:]\|require\s*(\?["'']\w*'
+" let g:neocomplete#force_omni_input_patterns.lua =
+" \ '\w\+[.:]\|require\s*(\?["'']\w*'
 
 " vim-unimpaired
 " Bubble single lines
