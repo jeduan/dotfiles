@@ -154,6 +154,7 @@ set wildignore+=*.orig
 set wildignore+=node_modules
 set wildignore+=bower_components
 set wildignore+=*.esproj
+set wildignore+=*.mp3
 set title
 
 " filetypes
@@ -267,15 +268,20 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
+if !exists('g:neocomplete#sources#omni#functions')
+  let g:neocomplete#sources#omni#functions = {}
+endif
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 let g:lua_check_syntax = 0
 let g:lua_complete_omni = 1
 let g:lua_complete_dynamic = 0
 
-let g:neocomplete#sources#omni#functions.lua =
-      \ 'xolox#lua#omnifunc'
-let g:neocomplete#sources#omni#input_patterns.lua =
-      \ '\w\+[.:]\|require\s*(\?["'']\w*'
+let g:neocomplete#sources#omni#functions.lua = 'xolox#lua#omnifunc'
+let g:neocomplete#sources#omni#input_patterns.lua = '\w\+[.:]\|require\s*(\?["'']\w*'
 " let g:neocomplete#force_omni_input_patterns.lua =
 " \ '\w\+[.:]\|require\s*(\?["'']\w*'
 

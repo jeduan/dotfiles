@@ -62,3 +62,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 if which rbenv &>/dev/null ; then
   eval "$(rbenv init - --no-rehash)"
 fi
+
+if which direnv &>/dev/null ; then
+  eval "$(direnv hook $0)"
+fi
