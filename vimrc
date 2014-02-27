@@ -21,6 +21,7 @@ Bundle 'xolox/vim-lua-ftplugin'
 "colorschemes
 Bundle 'chriskempson/base16-vim'
 
+Bundle 'xolox/vim-misc'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'AndrewRadev/switch.vim'
 Bundle 'rking/ag.vim'
@@ -279,6 +280,8 @@ let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 let g:lua_check_syntax = 0
 let g:lua_complete_omni = 1
 let g:lua_complete_dynamic = 0
+let g:lua_define_completefunc = 0
+let g:lua_define_completion_mappings = 0
 
 let g:neocomplete#sources#omni#functions.lua = 'xolox#lua#omnifunc'
 let g:neocomplete#sources#omni#input_patterns.lua = '\w\+[.:]\|require\s*(\?["'']\w*'

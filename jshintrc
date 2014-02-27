@@ -3,6 +3,7 @@
   "jquery": true,
   "node": true,
 
+  "asi": true,
   "camelcase": true,
   "eqeqeq": true,
   "eqnull": true,
