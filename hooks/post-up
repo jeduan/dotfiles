@@ -1,11 +1,11 @@
 #!/bin/sh
 
-if [ ! -e $HOME/.vim/bundle/vundle ]; then
-  git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+if [ ! -e $HOME/.vim/bundle/neobundle.vim ]; then
+  git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
 fi
-vim +BundleInstall +qa
+vim +NeoBundleInstall +qall
 
 if [ ! -e $HOME/.config/base16-shell ]; then
-  mkdir -p .config
+  mkdir -p $HOME/.config
   git clone git@github.com:chriskempson/base16-shell.git ~/.config/base16-shell
 fi
