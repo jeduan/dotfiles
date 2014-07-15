@@ -3,19 +3,19 @@ showInvisibles      = true
 spellChecking       = true
 
 # Includes
-mExtraIncludes = ".gitignore,.gitkeep"
+mExtraIncludes = ".gitignore,.gitkeep,.envrc"
 fileBrowserGlob  = "{*,$mExtraIncludes}"
 include = "{$include,$mExtraIncludes}"
 
 # Excludes
-mExtraExcludes = "node_modules"
+mExtraExcludes = "node_modules,bower_components"
 excludeInFileChooser  = "{$excludeInFileChooser,$mExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch,$mExtraExcludes}"
 excludeDirectories = "$mExtraExcludes"
 
 [ text ]
 softWrap            = true
-wrapColumn          = 100
+wrapColumn          = 80
 softTabs            = true
 tabSize             = 2
 
@@ -32,7 +32,7 @@ softTabs            = false
 tabSize             = 4
 
 [ source ]
-softWrap            = false
+softWrap            = true
 softTabs            = true
 tabSize             = 2
 
