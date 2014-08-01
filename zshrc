@@ -35,15 +35,13 @@ export NODE_PATH="/usr/local/lib/node_modules:$NODE_PATH"
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/heroku/bin:$PATH
 export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
 export EDITOR='vim'
-export CDPATH=".:~:~/Code"
 export LANG=en_US.UTF-8
-alias mocha="NODE_ENV=test ./node_modules/.bin/mocha"
 
-alias tma="tmux -CC attach -t"
+alias tmux="tmux -2"
+alias tma="tmux attach -t"
 function git-tmux() {
   CURRENT=`basename ${PWD}`
-  tmux -CC new -s $CURRENT -n editor
-  tmux send-keys -t $CURRENT 'vim .' C-m
+  tmux new -s $CURRENT -n editor
 }
 
 # Base16 Shell
@@ -52,12 +50,10 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 [[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 
 
-# export DYLD_LIBRARY_PATH="/usr/local/lib/mysql:$DYLD_LIBRARY_PATH"
-
 if which rbenv &>/dev/null ; then
   eval "$(rbenv init - --no-rehash)"
 fi
 
 if which direnv &>/dev/null ; then
-  eval "$(direnv hook $0)"
+  eval "$(direnv hook zsh)"
 fi
