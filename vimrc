@@ -17,44 +17,36 @@ NeoBundle 'Shougo/vimproc.vim', {
 "Syntax and language improvements
 NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}}
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundleLazy 'moll/vim-node', {'autoload':{'filetypes':['javascript']}}
 NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'othree/html5.vim'
+NeoBundleLazy 'moll/vim-node', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'myhere/vim-nodejs-complete', {'autoload': {'filetypes':['javascript']}}
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'vim-scripts/JavaScript-Indent'
 NeoBundleLazy 'mattn/emmet-vim', {'autoload':{'filetypes':['html','css']}}
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
 
 "colorschemes
 NeoBundle 'chriskempson/base16-vim'
 
-NeoBundle 'marijnh/tern_for_vim', {
-              \ 'build': {
-              \       'unix': 'npm install',
-              \   },
-              \ }
+NeoBundle 'marijnh/tern_for_vim', {'build':{'unix': 'npm install'}}
 NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'JazzCore/ctrlp-cmatcher', {
-              \ 'build': {
-              \       'unix': './install.sh',
-              \   },
-              \ }
+NeoBundle 'JazzCore/ctrlp-cmatcher', {'build':{'unix': './install.sh'}}
 "NeoBundle 'tacahiroy/ctrlp-funky'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'scrooloose/syntastic'
-" NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'bling/vim-airline'
 NeoBundleLazy 'sjl/gundo.vim', {
     \   'autoload': { 'commands': 'GundoToggle' }
     \ }
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
@@ -64,6 +56,7 @@ NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'vitaly/vim-gitignore'
+NeoBundle 'christoomey/vim-tmux-navigator'
 
 call neobundle#end()
 
@@ -140,7 +133,6 @@ set gdefault           " this makes search/replace global by default
 set showmatch
 set matchtime=2 " How many tenths of a second to blink
 
-
 " Deactivate cursor keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -166,14 +158,8 @@ set title
 " autocomplete
 au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
-au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+au FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
 au FileType coffee nnoremap <leader>pc :! pcoffee %<space>
-
-autocmd User Node
-  \ if &filetype == "javascript" |
-  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
-  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
-  \ endif
 
 " Save when losing focus
 au FocusLost * :silent! wall
@@ -231,7 +217,9 @@ set sidescroll=1
 
 """"""""""""""""""" Bundle configuration
 "delimitMate
-let delimitMate_expand_cr = 1
+" let g:delimitMate_expand_cr = 2
+" let g:delimitMate_expand_space = 1
+" let g:delimitMate_balance_matchpairs = 1
 
 """ctrlp.vim"""
 let g:ctrlp_working_path_mode = 'ra'
@@ -265,6 +253,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
+let g:syntastic_javascript_checkers = ['jsxhint']
 
 "Markdown options
 let g:vim_markdown_folding_disabled=1
@@ -278,15 +267,15 @@ set laststatus=2
 let g:airline_theme='base16'
 let g:airline_powerline_fonts=1
 " let g:airline_detect_modified=1
-" let g:airline_mode_map = {
-"       \ 'n'  : 'N',
-"       \ 'i'  : 'I',
-"       \ 'R'  : 'R',
-"       \ 'v'  : 'V',
-"       \ 'V'  : 'VL',
-"       \ 'c'  : 'CMD',
-"       \ '' : 'VB',
-"       \ }
+let g:airline_mode_map = {
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'v'  : 'V',
+      \ 'V'  : 'VL',
+      \ 'c'  : 'CMD',
+      \ '' : 'VB',
+      \ }
 
 
 " Ack
@@ -303,28 +292,11 @@ function! s:my_cr_function()
 endfunction
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " vim-unimpaired
 " Bubble multiple lines
 vmap ˚ [egv
 vmap ∆ ]egv
-
-" vim-surround
-"let g:surround_{char2nr("h")} = "{{\r}}"
-"let g:surround_{char2nr("#")} = "{{#\1helper: \1}}\r{{/\1\1}}"
-
-" switch.vim
-let g:switch_custom_definitions=[
-\        ['on', 'off'],
-\        ['0', '1'],
-\        ['yes', 'no'],
-\        ['before', 'after'],
-\        ['visible', 'hidden'],
-\        ['block', 'none'],
-\        ['!important', '/*!important*/']
-\]
-"nmap - :Switch<CR>
 
 "netrw
 let g:netrw_liststyle = 3

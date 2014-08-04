@@ -15,18 +15,13 @@ alias ip="ifconfig | grep inet\ "
 alias gsp="git smart-pull"
 alias gl="git smart-log"
 alias gp="git push"
-alias gm="git smart-merge"
 alias gaa="git add -A"
 alias gs="git status --short"
-
-# Quick way to rebuild the Launch Services database and get rid
-# of duplicates in the Open With submenu.
-alias fixopenwith="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(jeduan brew gem node npm bower gitignore)
+plugins=(jeduan brew gem node npm bower gitignore tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -39,10 +34,6 @@ export LANG=en_US.UTF-8
 
 alias tmux="tmux -2"
 alias tma="tmux attach -t"
-function git-tmux() {
-  CURRENT=`basename ${PWD}`
-  tmux new -s $CURRENT -n editor
-}
 
 # Base16 Shell
 BASE16_SCHEME="ocean"
