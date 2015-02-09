@@ -1,0 +1,27 @@
+*~
+.DS_Store
+ehthumbs.db
+Thumbs.db
+
+# nodejs
+node_modules/
+npm-debug.log
+coverage.html
+
+#angular
+bower/
+bower_components/
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+nohup.out
+.envrc
+.tm_properties
+jeduan.json
