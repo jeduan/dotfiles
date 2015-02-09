@@ -4,19 +4,20 @@
   "node": true,
 
   "asi": true,
-  "camelcase": true,
   "eqeqeq": true,
   "eqnull": true,
   "indent": 2,
-  "latedef": true,
+  "latedef": false,
   "newcap": true,
   "quotmark": "single",
   "trailing": true,
   "undef": true,
   "unused": true,
-  "maxlen": 80,
+  "maxlen": 130,
+  "expr": true,
   "globals": {
     /* MOCHA */
+    "angular"    : true,
     "describe"   : false,
     "it"         : false,
     "before"     : false,

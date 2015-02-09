@@ -18,6 +18,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}}
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'mustache/vim-mustache-handlebars'
+NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'othree/html5.vim'
 NeoBundleLazy 'moll/vim-node', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
@@ -25,7 +26,6 @@ NeoBundleLazy 'myhere/vim-nodejs-complete', {'autoload': {'filetypes':['javascri
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundleLazy 'mattn/emmet-vim', {'autoload':{'filetypes':['html','css']}}
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
 
 "colorschemes
 NeoBundle 'chriskempson/base16-vim'
@@ -120,6 +120,8 @@ set undodir=~/.vim-tmp
 set nobackup
 set noswapfile
 set nowritebackup
+"Disable auto newline
+set fileformats+=dos
 
 "" Search settings
 nnoremap / /\v
@@ -253,7 +255,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_checkers = ['jshint']
 
 "Markdown options
 let g:vim_markdown_folding_disabled=1
