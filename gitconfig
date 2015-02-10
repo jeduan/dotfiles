@@ -44,8 +44,6 @@
   assumed = "!git ls-files -v | grep ^h | cut -c 3-"
   unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
   assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
-;http://davidwalsh.name/delete-merged-branches-git
-  delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 ;http://blog.blindgaenger.net/advanced_git_aliases.html
   this = !git init && git add . && git commit -m \"initial commit\"
   amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend

@@ -10,6 +10,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export EDITOR=vim
+export ANDROID_HOME=$(brew --prefix android)
+
 # git aliases
 
 alias ip="ifconfig | grep inet\ "
@@ -41,5 +44,33 @@ source `brew --prefix`/etc/profile.d/z.sh
 
 # add hub
 # eval "$(hub alias -s)"
-source $(brew --prefix nvm)/nvm.sh
+#
+autoload -Uz promptinit
+promptinit
+prompt pure
 
+function pull-request {
+  local issue="$1"
+  local issue_title="`get-issue-title $issue`"
+  local branch="`git rev-parse --abbrev-ref HEAD`"
+  local base_branch="`echo $branch | sed -E 's/^([^/]+)\/.+/\1/'`"
+  hub pull-request -b $base_branch/development -m "Re: #$issue - $issue_title"
+}
+
+function get-issue-title {
+  local issue="$1"
+  local title="`hub issue | grep \" \+$issue\] \" | sed -E "s/ +$issue\] (.+) \( https\:\/\/github.+/\1/"`"
+  echo $title
+}
+
+function focus {
+  if [[ $# -eq 0 ]]; then
+    open focus://focus
+  else
+    open focus://focus?minutes=$1
+  fi
+}
+
+function unfocus {
+  open focus://unfocus
+}
