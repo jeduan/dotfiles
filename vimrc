@@ -14,6 +14,7 @@ NeoBundle 'Shougo/vimproc.vim', {
     \     'unix' : 'make_unix.mak',
     \   },
     \ }
+
 "Syntax and language improvements
 NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}}
 NeoBundle 'othree/html5.vim'
@@ -26,6 +27,12 @@ NeoBundle 'pangloss/vim-javascript'
 "colorschemes
 NeoBundle 'chriskempson/base16-vim'
 
+NeoBundle 'Valloric/YouCompleteMe', {
+     \ 'build' : {
+     \     'mac' : './install.sh',
+     \     'unix' : './install.sh'
+     \    }
+     \ }
 NeoBundle 'marijnh/tern_for_vim', {'build':{'unix': 'npm install'}}
 NeoBundle 'rking/ag.vim'
 NeoBundle 'kien/ctrlp.vim'
@@ -33,7 +40,6 @@ NeoBundle 'JazzCore/ctrlp-cmatcher', {'build':{'unix': './install.sh'}}
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -48,6 +54,7 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'sickill/vim-pasta'
 NeoBundle 'vitaly/vim-gitignore'
 NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'vim-scripts/PreserveNoEOL'
 
 call neobundle#end()
 
@@ -78,7 +85,7 @@ if exists('+colorcolumn')
   set colorcolumn=80 " Color the 80th column differently as a wrapping guide.
 endif
 set clipboard+=unnamed " Yanks go on clipboard instead.
-set autoread
+"set autoread
 set switchbuf=useopen  " Switch to an existing buffer if one exists
 set iskeyword+=\$,-   " Add extra characters that are valid parts of variables
 set encoding=utf-8
@@ -153,7 +160,8 @@ au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Save when losing focus
-au FocusLost * :silent! wall
+au FocusGained,BufEnter * :silent! !
+au FocusLost,WinLeave * :silent! w
 
 
 " remaps
@@ -207,10 +215,6 @@ set sidescrolloff=15
 set sidescroll=1
 
 """"""""""""""""""" Bundle configuration
-"delimitMate
-" let g:delimitMate_expand_cr = 2
-" let g:delimitMate_expand_space = 1
-" let g:delimitMate_balance_matchpairs = 1
 
 """ctrlp.vim"""
 let g:ctrlp_working_path_mode = 'ra'
@@ -272,18 +276,6 @@ let g:airline_mode_map = {
 " Ack
 nnoremap <leader>ag :Ag! "<cword>"<cr>
 
-" Neocomplete
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"   return neocomplete#smart_close_popup() . "\<CR>"
-" endfunction
-" " <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-
 " vim-unimpaired
 " Bubble multiple lines
 vmap ˚ [egv
@@ -294,11 +286,11 @@ let g:netrw_liststyle = 3
 let g:netrw_list_hide = ".git,.sass-cache,.jpg,.png,.svg,.DS_Store"
 let g:netrw_preview = 1
 
-"mustache
-let g:mustache_abbreviations=1
-
 "Tabularize
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+
+"PreserveNoEOL
+let g:PreserveNoEOL = 1
