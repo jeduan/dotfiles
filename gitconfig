@@ -12,6 +12,7 @@
   br = branch -v
   diffstaged = diff --staged
   unstage = reset HEAD --
+  rb = rebase -p
 
 ; http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
   r = reset
@@ -53,6 +54,8 @@
   x  = commit -m
   xa = commit -a -m
   a = add
+
+  dmb = delete-merged-branches
 
 [core]
   excludesfile = /Users/jeduan/.gitignore_global

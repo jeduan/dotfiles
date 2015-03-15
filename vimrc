@@ -16,13 +16,9 @@ NeoBundle 'Shougo/vimproc.vim', {
     \ }
 "Syntax and language improvements
 NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}}
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'othree/html5.vim'
 NeoBundleLazy 'moll/vim-node', {'autoload':{'filetypes':['javascript']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundleLazy 'myhere/vim-nodejs-complete', {'autoload': {'filetypes':['javascript']}}
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundleLazy 'mattn/emmet-vim', {'autoload':{'filetypes':['html','css']}}
 NeoBundle 'pangloss/vim-javascript'
@@ -31,20 +27,15 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'chriskempson/base16-vim'
 
 NeoBundle 'marijnh/tern_for_vim', {'build':{'unix': 'npm install'}}
-NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'JazzCore/ctrlp-cmatcher', {'build':{'unix': './install.sh'}}
-"NeoBundle 'tacahiroy/ctrlp-funky'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bling/vim-airline'
-NeoBundleLazy 'sjl/gundo.vim', {
-    \   'autoload': { 'commands': 'GundoToggle' }
-    \ }
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'tpope/vim-eunuch'
@@ -160,8 +151,6 @@ set title
 " autocomplete
 au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
-au FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
-au FileType coffee nnoremap <leader>pc :! pcoffee %<space>
 
 " Save when losing focus
 au FocusLost * :silent! wall
@@ -284,16 +273,16 @@ let g:airline_mode_map = {
 nnoremap <leader>ag :Ag! "<cword>"<cr>
 
 " Neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-endfunction
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplete#smart_close_popup() . "\<CR>"
+" endfunction
+" " <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 
 " vim-unimpaired
 " Bubble multiple lines

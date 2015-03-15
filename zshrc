@@ -74,3 +74,7 @@ function focus {
 function unfocus {
   open focus://unfocus
 }
+
+alias usenode='brew unlink iojs && brew link node && echo Using Node.js'
+alias useio='brew unlink node && brew link --force iojs && echo Using io.js'
+alias cdvlog='adb logcat CordovaLog:D *:S'
