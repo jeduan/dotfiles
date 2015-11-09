@@ -6,6 +6,7 @@
   "asi": true,
   "eqeqeq": true,
   "eqnull": true,
+  "esnext": true,
   "indent": 2,
   "latedef": false,
   "newcap": true,

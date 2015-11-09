@@ -25,3 +25,4 @@ nohup.out
 .envrc
 .tm_properties
 jeduan.json
+*.log

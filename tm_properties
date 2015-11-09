@@ -3,7 +3,7 @@ showInvisibles      = true
 spellChecking       = true
 
 # Includes
-mExtraIncludes = ".gitignore,.gitkeep,.envrc"
+mExtraIncludes = ".gitignore,.gitkeep,.envrc,.editor_config"
 fileBrowserGlob  = "{*,$mExtraIncludes}"
 include = "{$include,$mExtraIncludes}"
 

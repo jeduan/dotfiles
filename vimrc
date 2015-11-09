@@ -16,16 +16,17 @@ NeoBundle 'Shougo/vimproc.vim', {
     \ }
 
 "Syntax and language improvements
-NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}}
 NeoBundle 'othree/html5.vim'
-NeoBundleLazy 'moll/vim-node', {'autoload':{'filetypes':['javascript']}}
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}}
+NeoBundleLazy 'mattn/emmet-vim', {'autoload': {'filetypes': ['html','css']}}
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundleLazy 'mattn/emmet-vim', {'autoload':{'filetypes':['html','css']}}
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'groenewege/vim-less'
 
 "colorschemes
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'yosiat/oceanic-next-vim'
 
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build' : {
@@ -45,7 +46,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'tpope/vim-eunuch'
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive', { 'augroup' : 'fugitive'}
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
@@ -59,7 +60,6 @@ NeoBundle 'vim-scripts/PreserveNoEOL'
 call neobundle#end()
 
 NeoBundleCheck
-
 
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
@@ -78,6 +78,7 @@ set hidden
 
 set t_Co=256
 colorscheme base16-ocean
+" colorscheme OceanicNext
 let base16colorspace=256
 set background=dark
 
@@ -85,7 +86,6 @@ if exists('+colorcolumn')
   set colorcolumn=80 " Color the 80th column differently as a wrapping guide.
 endif
 set clipboard+=unnamed " Yanks go on clipboard instead.
-"set autoread
 set switchbuf=useopen  " Switch to an existing buffer if one exists
 set iskeyword+=\$,-   " Add extra characters that are valid parts of variables
 set encoding=utf-8
@@ -159,26 +159,31 @@ set title
 au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
 
-" Save when losing focus
-au FocusGained,BufEnter * :silent! !
-au FocusLost,WinLeave * :silent! w
+" autocmd on BufWritePre
+" autocmd BufWritePre * :call StripTrailingWhitespace()
+" Since autoread does not work outside of gui-vim version
 
+"" check file change every 4 seconds ('CursorHold') and reload the buffer upon detecting change
+set autoread
+au CursorHold * checktime "this should trigger autoread
 
 " remaps
 nnoremap <tab> %
 vnoremap <tab> %
 " set command to ; instead of :
 nnoremap ; :
-" Strip trailing whitespace
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
-" jj is now esc
-inoremap jj <ESC>
+" c-c is now esc
+inoremap <C-c> <ESC>
 inoremap jk <ESC>
 inoremap ;; <C-o>A;
 
 nnoremap C ddO
 nnoremap <leader><leader><leader> <c-^>
+imap <c-f> function<space>()<c-o>i
+cnoremap <expr> %% expand('%:h').'/'
+
+nnoremap <leader>r :! chrome-cli reload<cr><cr>
 
 " Easy window navigation
 nnoremap <C-h> <C-w>h
@@ -203,16 +208,29 @@ set wildignore+=*vim/backups*
 set wildignore+=*.swp,*.bak,*.pyc,*.class
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=*.orig
-set wildignore+=*.esproj
 set wildignore+=*.mp3
 
 " Scrolling
 " =========
 
 " Start scrolling when we're getting close to margins
-set scrolloff=10
+set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
+
+" Rename current file
+" =======================
+
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+nnoremap <leader>n :call RenameFile()<cr>
 
 """"""""""""""""""" Bundle configuration
 
@@ -248,13 +266,10 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 "Markdown options
 let g:vim_markdown_folding_disabled=1
-
-"gundo
-" nnoremap <leader>u :GundoToggle<CR>
 
 "airline
 "always appear
