@@ -21,8 +21,7 @@ NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}}
 NeoBundleLazy 'mattn/emmet-vim', {'autoload': {'filetypes': ['html','css']}}
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'groenewege/vim-less'
+NeoBundleLazy 'mxw/vim-jsx', {'autoload': {'filetypes': 'javascript'}}
 
 "colorschemes
 NeoBundle 'chriskempson/base16-vim'
@@ -42,7 +41,8 @@ NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'tpope/vim-eunuch'
@@ -51,11 +51,9 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-vinegar'
-NeoBundle 'godlygeek/tabular'
 NeoBundle 'sickill/vim-pasta'
-NeoBundle 'vitaly/vim-gitignore'
+NeoBundle 'rdolgushin/gitignore.vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'vim-scripts/PreserveNoEOL'
 
 call neobundle#end()
 
@@ -301,11 +299,6 @@ let g:netrw_liststyle = 3
 let g:netrw_list_hide = ".git,.sass-cache,.jpg,.png,.svg,.DS_Store"
 let g:netrw_preview = 1
 
-"Tabularize
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
+" Enable JSX in .js files too
+let g:jsx_ext_required = 0
 
-"PreserveNoEOL
-let g:PreserveNoEOL = 1

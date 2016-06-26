@@ -1,0 +1,56 @@
+# Your keymap
+#
+# Atom keymaps work similarly to style sheets. Just as style sheets use
+# selectors to apply styles to elements, Atom keymaps use selectors to associate
+# keystrokes with events in specific contexts.
+#
+# You can create a new keybinding in this file by typing "key" and then hitting
+# tab.
+#
+# Here's an example taken from Atom's built-in keymap:
+#
+# 'atom-text-editor':
+#   'enter': 'editor:newline'
+#
+# 'atom-workspace':
+#   'ctrl-shift-p': 'core:move-up'
+#   'ctrl-p': 'core:move-down'
+#
+# You can find more information about keymaps in these guides:
+# * https://atom.io/docs/latest/customizing-atom#customizing-key-bindings
+# * https://atom.io/docs/latest/advanced/keymaps
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it here:
+# https://github.com/bevry/cson#what-is-cson
+
+'body':
+  'cmd-k right': 'pane:split-right-and-move-active-item'
+  'cmd-k down': 'pane:split-down-and-move-active-item'
+
+'atom-workspace':
+  'ctrl-alt-cmd-d': 'tree-view:toggle'
+  'alt-cmd-tab': 'tree-view:toggle-focus'
+  'ctrl-cmd-r': 'tree-view:reveal-active-file'
+  'ctrl-cmd-t': 'command-palette:toggle'
+  'ctrl-h': 'window:focus-pane-on-left'
+  'ctrl-l': 'window:focus-pane-on-right'
+  'cmd-k v': 'pane:split-right'
+  'cmd-k x': 'pane:split-down'
+
+'atom-text-editor':
+  'ctrl-s': 'find-and-replace:show'
+  'ctrl-w': 'editor:select-word'
+  'ctrl-D': 'editor:duplicate-lines'
+  'ctrl-cmd-w': 'pane:close-other-items'
+  'ctrl-k': 'core:move-up'
+  'ctrl-j': 'core:move-down'
+  'ctrl-K': 'core:select-up'
+  'ctrl-J': 'core:select-down'
+
+'atom-workspace atom-text-editor:not([mini])':
+  'cmd-L': 'editor:select-line'
+  'alt-cmd-l': 'editor:split-selections-into-lines'
+
+'.platform-darwin atom-text-editor:not([mini])':
+  'ctrl-w': 'editor:select-word'

@@ -5,6 +5,7 @@ fi
 
 export EDITOR=vim
 export ANDROID_HOME=$(brew --prefix android)
+export ANDROID_SDK=$(brew --prefix android)
 
 # Enable ^, see https://github.com/robbyrussell/oh-my-zsh/issues/449
 unsetopt nomatch
@@ -24,10 +25,6 @@ alias npmr="npm run"
 BASE16_SCHEME="ocean"
 BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 [[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
-
-if which rbenv &>/dev/null ; then
-  eval "$(rbenv init -)"
-fi
 
 if which direnv &>/dev/null ; then
   eval "$(direnv hook zsh)"
@@ -56,8 +53,13 @@ function unfocus {
   open focus://unfocus
 }
 
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# nvm
+# export NVM_DIR=~/.nvm
+# source $(brew --prefix nvm)/nvm.sh
+
 alias fuck='$(thefuck $(fc -ln -1))'
 source ~/.iterm2_shell_integration.zsh
-export PATH=$PATH:"$(brew --prefix node)/bin"
+export PATH="$HOME/.npm-packages/bin:$PATH"
+alias start-emulator='emulator -avd Nexus_5X_API_23 -gpu on &'
+alias npmE='PATH="$(npm bin)":"$PATH"'
+
