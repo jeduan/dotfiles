@@ -27,16 +27,11 @@ NeoBundleLazy 'mxw/vim-jsx', {'autoload': {'filetypes': 'javascript'}}
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'yosiat/oceanic-next-vim'
 
-NeoBundle 'Valloric/YouCompleteMe', {
-     \ 'build' : {
-     \     'mac' : './install.sh',
-     \     'unix' : './install.sh'
-     \    }
-     \ }
+NeoBundle 'Valloric/YouCompleteMe', {'build': {'unix' : './install.py'}}
 NeoBundle 'marijnh/tern_for_vim', {'build':{'unix': 'npm install'}}
 NeoBundle 'rking/ag.vim'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'JazzCore/ctrlp-cmatcher', {'build':{'unix': './install.sh'}}
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'JazzCore/ctrlp-cmatcher', {'build': {'unix': './install.sh'}}
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'Raimondi/delimitMate'
@@ -236,6 +231,8 @@ nnoremap <leader>n :call RenameFile()<cr>
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_reuse_window = 'netrw'
+let g:ctrlp_switch_buffer = 'et'
 
 " Ensure max height isn't too large. (for performance)
 let g:ctrlp_max_height = 10

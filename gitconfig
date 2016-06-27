@@ -1,6 +1,6 @@
 [user]
-	name = Jeduan Cornejo
-	email = jeduan@gmail.com
+  name = Jeduan Cornejo
+  email = jeduan@gmail.com
 [color]
   ui = auto
 
@@ -37,6 +37,7 @@
   r  = !git ls-files -z --deleted | xargs -0 git rm
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort
   ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
+  delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
   dmb = delete-merged-branches
 
 [core]
@@ -48,3 +49,7 @@
   default = simple
 [credential]
   helper = osxkeychain
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

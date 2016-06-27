@@ -21,6 +21,7 @@ alias gs="git status --short"
 alias tmux="tmux -2"
 alias tma="tmux attach -t"
 alias npmr="npm run"
+alias mux="tmuxinator"
 
 BASE16_SCHEME="ocean"
 BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
@@ -29,7 +30,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 if which direnv &>/dev/null ; then
   eval "$(direnv hook zsh)"
 fi
-# source /usr/local/opt/autoenv/activate.sh
+alias colortest="$HOME/.config/base16-shell/colortest"
 
 # load z
 source `brew --prefix`/etc/profile.d/z.sh
@@ -59,7 +60,6 @@ function unfocus {
 
 alias fuck='$(thefuck $(fc -ln -1))'
 source ~/.iterm2_shell_integration.zsh
-export PATH="$HOME/.npm-packages/bin:$PATH"
 alias start-emulator='emulator -avd Nexus_5X_API_23 -gpu on &'
 alias npmE='PATH="$(npm bin)":"$PATH"'
 
