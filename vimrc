@@ -1,67 +1,48 @@
 if has('vim_starting')
   set nocompatible
-  set runtimepath+=~/.vim/bundle/neoBundle.vim/
 endif
 
-call neobundle#begin(expand('~/.vim/bundle'))
-NeoBundleFetch 'Shougo/neoBundle.vim', 'master'
-
-NeoBundle 'Shougo/vimproc.vim', {
-    \ 'build' : {
-    \     'windows' : 'make -f make_mingw32.mak',
-    \     'cygwin' : 'make -f make_cygwin.mak',
-    \     'mac' : 'make -f make_mac.mak',
-    \     'unix' : 'make_unix.mak',
-    \   },
-    \ }
+call plug#begin('~/.vim/plugged')
 
 "Syntax and language improvements
-NeoBundle 'othree/html5.vim'
-NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}}
-NeoBundleLazy 'mattn/emmet-vim', {'autoload': {'filetypes': ['html','css']}}
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundleLazy 'mxw/vim-jsx', {'autoload': {'filetypes': 'javascript'}}
+Plug 'othree/html5.vim'
+Plug 'elzr/vim-json'
+Plug 'mattn/emmet-vim', { 'for': ['html','css'] }
+Plug 'plasticboy/vim-markdown'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx', {'for': 'javascript'}
 
 "colorschemes
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'yosiat/oceanic-next-vim'
+Plug 'chriskempson/base16-vim'
+Plug 'yosiat/oceanic-next-vim'
 
-NeoBundle 'Valloric/YouCompleteMe', {'build': {'unix' : './install.py'}}
-NeoBundle 'marijnh/tern_for_vim', {'build':{'unix': 'npm install'}}
-NeoBundle 'rking/ag.vim'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'JazzCore/ctrlp-cmatcher', {'build': {'unix': './install.sh'}}
-NeoBundle 'myusuf3/numbers.vim'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'tpope/vim-eunuch'
-NeoBundle 'tpope/vim-fugitive', { 'augroup' : 'fugitive'}
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-vinegar'
-NeoBundle 'sickill/vim-pasta'
-NeoBundle 'rdolgushin/gitignore.vim'
-NeoBundle 'christoomey/vim-tmux-navigator'
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
+Plug 'rking/ag.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'JazzCore/ctrlp-cmatcher', {'do': './install.sh'}
+Plug 'myusuf3/numbers.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'sickill/vim-pasta'
+Plug 'rdolgushin/gitignore.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
-call neobundle#end()
-
-NeoBundleCheck
+call plug#end()
 
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
-
-" Switch syntax highlighting on
-syntax on
-
-" Enable file type detection and do language-dependent indenting.
-filetype plugin indent on
 
 " Show line numbers
 set number
