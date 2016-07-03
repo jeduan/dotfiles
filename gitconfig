@@ -38,7 +38,6 @@
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort
   ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
   delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
-  dmb = delete-merged-branches
 
 [core]
   excludesfile = /Users/jeduan/.gitignore_global
