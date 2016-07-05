@@ -1,0 +1,11 @@
+alias ip="ifconfig | grep inet\ "
+alias gsp="git smart-pull"
+alias gp="git push"
+alias gaa="git add -A"
+alias gs="git status --short"
+
+alias tmux="tmux -2"
+alias tma="tmux attach -t"
+alias npmr="npm run"
+alias mux="tmuxinator"
+alias start-emulator='emulator -avd Nexus_5X_API_23 -gpu on &'
