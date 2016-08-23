@@ -27,8 +27,6 @@ export HISTFILE=~/.zhistory
 autoload run-help
 HELPDIR=$(brew --prefix zsh)/help
 
-
-
 if which direnv &>/dev/null ; then
   eval "$(direnv hook zsh)"
 fi
@@ -43,6 +41,14 @@ function focus {
 
 function unfocus {
   open focus://unfocus
+}
+
+function dmenv {
+  if [[ $# -eq 0 ]]; then
+    eval "$(docker-machine env default)"
+  else
+    eval "$(docker-machine env $1)"
+  fi
 }
 
 source ~/.iterm2_shell_integration.zsh

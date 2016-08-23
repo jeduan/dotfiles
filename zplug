@@ -10,7 +10,6 @@ zplug "plugins/brew", from:oh-my-zsh
 zplug "plugins/brew-cask", from:oh-my-zsh, nice:10
 zplug "plugins/thefuck", from:oh-my-zsh
 zplug "plugins/osx", from:oh-my-zsh, nice:10
-# zplug "sdurrheimer/docker-compose-zsh-completion"
 zplug "zsh-users/zsh-autosuggestions", nice:10
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", nice:18 # Should be loaded 2nd last.
@@ -25,7 +24,6 @@ export EMOJI_CLI_KEYBIND="^e"
 zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
 zplug "b4b4r07/enhancd", use:"init.sh"
 zplug "unixorn/tumult.plugin.zsh"
-zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf, use:"*darwin*amd64*"
 zplug "junegunn/fzf", use:"shell/completion.zsh"
 zplug "junegunn/fzf", use:"shell/key-bindings.zsh"
 

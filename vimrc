@@ -9,8 +9,9 @@ Plug 'othree/html5.vim'
 Plug 'elzr/vim-json'
 Plug 'mattn/emmet-vim', { 'for': ['html','css'] }
 Plug 'plasticboy/vim-markdown'
-Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx', {'for': 'javascript'}
+Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
 
 "colorschemes
 Plug 'chriskempson/base16-vim'
@@ -280,3 +281,4 @@ let g:netrw_preview = 1
 " Enable JSX in .js files too
 let g:jsx_ext_required = 0
 
+let g:used_javascript_libs = 'underscore,react,flux'
