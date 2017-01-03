@@ -3,18 +3,15 @@ export ZPLUG_HOME=~/.config/zplug
 source $(brew --prefix zplug)/init.zsh
 
 zplug "djui/alias-tips"
-zplug "rupa/z", use:z.sh
-zplug "zsh-users/zsh-autosuggestions", defer:2
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # Should be loaded 2nd last.
 zplug "zsh-users/zsh-history-substring-search", defer:3 # Should be loaded last.
-zplug "mafredri/zsh-async", on:sindresorhus/pure
-zplug "sindresorhus/pure", defer:2
-BASE16_SCHEME="ocean"
-zplug "chriskempson/base16-shell", use:"scripts/base16-$BASE16_SCHEME.sh", defer:0
+zplug "mafredri/zsh-async", defer:0
+zplug "sindresorhus/pure", use:pure.zsh, as:theme
+zplug "chriskempson/base16-shell", use:"scripts/base16-ocean.sh", defer:0
 zplug "unixorn/tumult.plugin.zsh"
-zplug "junegunn/fzf", use:"shell/completion.zsh"
-zplug "junegunn/fzf", use:"shell/key-bindings.zsh"
+zplug "junegunn/fzf", use:"shell/*.zsh"
 
 # Check for uninstalled plugins.
 if ! zplug check --verbose; then
@@ -25,6 +22,6 @@ if ! zplug check --verbose; then
 fi
 
 # Source plugins.
-zplug load --verbose
+zplug load
 
 
