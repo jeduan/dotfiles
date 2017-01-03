@@ -6,6 +6,11 @@ alias gs="git status --short"
 
 alias tmux="tmux -2"
 alias tma="tmux attach -t"
-alias npmr="npm run"
+alias npmr="yarn run"
+alias yst="yarn start"
 alias mux="tmuxinator"
 alias start-emulator='emulator -avd Nexus_5X_API_23 -gpu on &'
+alias bind443="echo 'rdr pass inet proto tcp from any to any port 443 -> 127.0.0.1 port 3000' | pfctl -ef -"
+alias bind80="echo 'rdr pass inet proto tcp from any to any port 80 -> 127.0.0.1 port 3000' | pfctl -ef -"
+alias unbindports="pfctl -F all -f /etc/pf.conf"
+alias lsfw="pfctl -F all -f /etc/pf.conf"

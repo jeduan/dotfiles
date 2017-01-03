@@ -36,6 +36,7 @@ path=(
   $path
 )
 
+export NODE_PATH=$(npm root -g)
 export ANDROID_HOME=$(brew --prefix android)
 export ANDROID_SDK=$(brew --prefix android)
 
